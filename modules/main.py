@@ -46,8 +46,8 @@ async def start_bot():
     await bot.start()
     print("Bot is up and running")
 
-async def stop_bot():
-    await bot.stop()
+# async def stop_bot():
+#     await bot.stop()
 
 async def main():
     if WEBHOOK:
@@ -59,14 +59,14 @@ async def main():
         print(f"Web server started on port {PORT}")
 
     # Start the bot
-    await start_bot()
+    await bot.run()
 
     # Keep the program running
     try:
         while True:
             await asyncio.sleep(3600)  # Run forever, or until interrupted
     except (KeyboardInterrupt, SystemExit):
-        await stop_bot()
+        await bot.run()
     
 @bot.on_message(filters.command(["start"]))
 async def account_login(bot: Client, m: Message):
@@ -262,6 +262,6 @@ print("""
 print("""✅ 𝐃𝐞𝐩𝐥𝐨𝐲 𝐒𝐮𝐜𝐜𝐞𝐬𝐬𝐟𝐮𝐥𝐥𝐲 ✅""")
 print("""✅ 𝐁𝐨𝐭 𝐖𝐨𝐫𝐤𝐢𝐧𝐠 ✅""")
 
-bot.run()
+
 if __name__ == "__main__":
     asyncio.run(main())
