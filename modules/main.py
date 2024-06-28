@@ -35,7 +35,7 @@ routes = web.RouteTableDef()
 
 @routes.get("/", allow_head=True)
 async def root_route_handler(request):
-    return web.json_response("https://github.com/AshutoshGoswami24 && https://github.com/SudoR2spr")
+    return web.json_response("IAMASHU")
 
 async def web_server():
     web_app = web.Application(client_max_size=30000000)
@@ -45,9 +45,7 @@ async def web_server():
 async def start_bot():
     await bot.start()
     print("Bot is up and running")
-
-# async def stop_bot():
-#     await bot.stop()
+    await bot.idle()  # Keep the bot running
 
 async def main():
     if WEBHOOK:
@@ -58,15 +56,8 @@ async def main():
         await site.start()
         print(f"Web server started on port {PORT}")
 
-    # Start the bot
+    # Start the bot using bot.run()
     await bot.run()
-
-    # Keep the program running
-    try:
-        while True:
-            await asyncio.sleep(3600)  # Run forever, or until interrupted
-    except (KeyboardInterrupt, SystemExit):
-        await bot.run()
     
 @bot.on_message(filters.command(["start"]))
 async def account_login(bot: Client, m: Message):
